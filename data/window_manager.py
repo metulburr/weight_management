@@ -6,28 +6,13 @@ except ImportError:
     import Tkinter as tk
     import tkMessageBox as msgbox
 
-from . import storage, weight_tab
+from . import storage, weight_tab, mood_tab
 
 class WM():
     def __init__(self, parent):
         self.root = parent
         self.widgets = []
-        
         self.values = storage.Storage()
-        
-
-        #test
-        '''
-        self.food_num = 0
-        self.activity_num = 0
-        self.weight_num = 250
-        self.mood_num = 10
-        self.cal_budget_num = 2000
-        self.net_cal_num = -3000
-        self.start_weight = 260
-        self.goal_weight = 200
-        '''
-        
         self.button_layout()
         self.on_home()
     
@@ -111,17 +96,13 @@ class WM():
     def on_weight(self):
         self.clear()
         self.root.title('Weight')
-        
         self.weight = weight_tab.Weight(self.root, self.widgets, self.values)
 
         
     def on_mood(self):
         self.clear()
         self.root.title('Mood')
-        
-        t = tk.Label(self.root, text='inside of mood')
-        self.widgets.append(t)
-        t.grid(row=1, column=0)
+        self.mood = mood_tab.Mood(self.root, self.widgets, self.values)
         
     def on_cal_budget(self):
         self.clear()
