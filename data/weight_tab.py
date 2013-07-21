@@ -91,6 +91,47 @@ class Weight():
         cal_btn.grid(row=3, column=6, columnspan=2, pady=10)
         
         
+        
+        #progress section 
+        lbl = labelframe = tk.Frame(self.root)
+        font=("Georgia", "11", "bold")
+        tk.Label(labelframe, font=font, width=20, text='Goal').grid(row=4, column=2, columnspan=2, pady=20)
+        tk.Label(labelframe, font=font, width= 20, text='Current').grid(row=4, column=4, columnspan=2)
+        tk.Label(labelframe, font=font, text='Date').grid(row=5, column=0, columnspan=2, sticky='e')
+        tk.Label(labelframe, font=font, text='Timespan').grid(row=6, column=0, columnspan=2, sticky='e')
+        tk.Label(labelframe, font=font, text='Weight').grid(row=7, column=0, columnspan=2, sticky='e')
+        tk.Label(labelframe, font=font, text='Pounds to Lose').grid(row=8, column=0, columnspan=2, sticky='e')
+        tk.Label(labelframe, font=font, text='Pounds per Day').grid(row=9, column=0, columnspan=2, sticky='e')
+        tk.Label(labelframe, font=font, text='Pounds per Week').grid(row=10, column=0, columnspan=2, sticky='e')
+        tk.Label(labelframe, font=font, text='Calories You Burn').grid(row=11, column=0, columnspan=2, sticky='e')
+        tk.Label(labelframe, font=font, text='Calories to Eliminate').grid(row=12, column=0, columnspan=2, sticky='e')
+        tk.Label(labelframe, font=font, text='Calories to Eat').grid(row=13, column=0, columnspan=2, sticky='e')
+        
+        
+        tk.Label(labelframe, text=self.values.goal_date).grid(row=5, column=2, columnspan=2) #goal
+        tk.Label(labelframe, text=self.values.current_date).grid(row=5, column=4, columnspan=2) #current
+        tk.Label(labelframe, text=self.values.goal_timespan).grid(row=6, column=2, columnspan=2) #goal
+        tk.Label(labelframe, text=self.values.current_timespan).grid(row=6, column=4, columnspan=2) #current
+        tk.Label(labelframe, text=self.values.goal_weight).grid(row=7, column=2, columnspan=2) #goal
+        tk.Label(labelframe, text=self.values.weight_num).grid(row=7, column=4, columnspan=2) #current
+        tk.Label(labelframe, text=self.values.goal_pound2lose).grid(row=8, column=2, columnspan=2) #goal
+        tk.Label(labelframe, text=self.values.current_pound2lose).grid(row=8, column=4, columnspan=2) #current
+        tk.Label(labelframe, text=self.values.goal_daypounds).grid(row=9, column=2, columnspan=2) #goal
+        tk.Label(labelframe, text=self.values.current_daypounds).grid(row=9, column=4, columnspan=2) #current
+        tk.Label(labelframe, text=self.values.goal_weekpounds).grid(row=10, column=2, columnspan=2) #goal
+        tk.Label(labelframe, text=self.values.current_weekpounds).grid(row=10, column=4, columnspan=2) #current
+        tk.Label(labelframe, text=self.values.goal_cal_burn).grid(row=11, column=2, columnspan=2) #goal
+        tk.Label(labelframe, text=self.values.current_cal_burn).grid(row=11, column=4, columnspan=2) #current
+        tk.Label(labelframe, text=self.values.goal_cal2elim).grid(row=12, column=2, columnspan=2) #goal
+        tk.Label(labelframe, text=self.values.current_cal2elim).grid(row=12, column=4, columnspan=2) #current
+        tk.Label(labelframe, text=self.values.goal_cal2eat).grid(row=13, column=2, columnspan=2) #goal
+        tk.Label(labelframe, text=self.values.current_cal2eat).grid(row=13, column=4, columnspan=2) #current
+        
+        self.widgets.append(lbl)
+        lbl.grid(row=4, column=0, columnspan=6)
+  
+        
+        
     def set_value(self, strvar, widget, select=None, var=None):
         num = False
         if not strvar.get():
