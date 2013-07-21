@@ -6,7 +6,7 @@ except ImportError:
     import Tkinter as tk
     import tkMessageBox as msgbox
 
-from . import storage, weight_tab, mood_tab
+from . import storage, weight_tab, mood_tab, food_tab, activity_tab
 
 class WM():
     def __init__(self, parent):
@@ -76,28 +76,17 @@ class WM():
     def on_food(self):
         self.clear()
         self.root.title('Food')
-        
-        t = tk.Label(self.root, text='inside of food')
-        self.widgets.append(t)
-        t.grid(row=1, column=0)
-        
-
-       
-        
+        self.food = food_tab.Food(self.root, self.widgets, self.values)
         
     def on_activity(self):
         self.clear()
         self.root.title('Activity')
-
-        t = tk.Label(self.root, text='inside of Activity')
-        self.widgets.append(t)
-        t.grid(row=1, column=0)
+        self.activity = activity_tab.Activity(self.root, self.widgets, self.values)
         
     def on_weight(self):
         self.clear()
         self.root.title('Weight')
         self.weight = weight_tab.Weight(self.root, self.widgets, self.values)
-
         
     def on_mood(self):
         self.clear()
