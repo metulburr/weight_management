@@ -6,7 +6,7 @@ except ImportError:
     import Tkinter as tk
     import tkMessageBox as msgbox
 
-from . import storage, weight_tab, mood_tab, food_tab, activity_tab
+from . import storage, weight_tab, mood_tab, food_tab, activity_tab, graph_tab
 
 class WM():
     def __init__(self, parent):
@@ -48,7 +48,7 @@ class WM():
         #display all values for corresponding section
         t = tk.Label(self.root, text=self.values.food_num)
         self.widgets.append(t)
-        t.grid(row=1, column=1)
+        t.grid(row=1, column=1, pady=10)
         
         t = tk.Label(self.root, text=self.values.activity_num)
         self.widgets.append(t)
@@ -96,10 +96,7 @@ class WM():
     def on_cal_budget(self):
         self.clear()
         self.root.title('Calorie Budget')
-        
-        t = tk.Label(self.root, text='inside of calbud')
-        self.widgets.append(t)
-        t.grid(row=1, column=0)
+        self.weight = weight_tab.Weight(self.root, self.widgets, self.values)
         
     def on_net_cal(self):
         self.clear()
@@ -108,12 +105,8 @@ class WM():
         t = tk.Label(self.root, text='inside of netcal')
         self.widgets.append(t)
         t.grid(row=1, column=0)
-       
         
     def on_graph(self):
         self.clear()
         self.root.title('Graph')
-        
-        t = tk.Label(self.root, text='inside of gragh')
-        self.widgets.append(t)
-        t.grid(row=1, column=0)
+        self.graph = graph_tab.Graph(self.root, self.widgets, self.values)

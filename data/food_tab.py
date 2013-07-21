@@ -17,6 +17,7 @@ class Food():
         e.grid(row=1, column=0, columnspan=7, ipadx=250, pady=10)
         s.set('What did you eat today?')
         
+        e.bind('<Return>', lambda x:print('test'))
         search_btn = tk.Button(self.root, text='Search', command='disabled')
         self.widgets.append(search_btn)
         search_btn.grid(row=1, column=7)

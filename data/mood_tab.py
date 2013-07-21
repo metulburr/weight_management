@@ -16,7 +16,7 @@ class Mood():
     def textarea(self):
         t = tk.Text(self.root, height=4)
         self.widgets.append(t)
-        t.grid(row=1, column=0, columnspan=8)
+        t.grid(row=1, column=0, columnspan=8, pady=10)
         
         lbl_btn = tk.Button(self.root, text='Save', command='disabled')
         self.widgets.append(lbl_btn)
