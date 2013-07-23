@@ -46,27 +46,27 @@ class WM():
         
         
         #display all values for corresponding section
-        t = tk.Label(self.root, text=self.values.food_num)
+        t = tk.Label(self.root, text=self.values.database['food_cal'])
         self.widgets.append(t)
         t.grid(row=1, column=1, pady=10)
         
-        t = tk.Label(self.root, text=self.values.activity_num)
+        t = tk.Label(self.root, text=self.values.database['activity_cal'])
         self.widgets.append(t)
         t.grid(row=1, column=2)
 
-        t = tk.Label(self.root, text=self.values.weight_num)
+        t = tk.Label(self.root, text=self.values.database['current_weight'])
         self.widgets.append(t)
         t.grid(row=1, column=3)
         
-        t = tk.Label(self.root, text=self.values.mood_num)
+        t = tk.Label(self.root, text=self.values.database['mood'])
         self.widgets.append(t)
         t.grid(row=1, column=4)
         
-        t = tk.Label(self.root, text=self.values.cal_budget_num)
+        t = tk.Label(self.root, text=self.values.database['cal_budget'])
         self.widgets.append(t)
         t.grid(row=1, column=5)
         
-        t = tk.Label(self.root, text=self.values.net_cal_num)
+        t = tk.Label(self.root, text=self.values.database['cal_net'])
         self.widgets.append(t)
         t.grid(row=1, column=6)
         

@@ -12,7 +12,7 @@ class Weight():
         self.values = values
         
         #weight
-        weight_text = 'Current Weight\n{}'.format(str(self.values.weight_num))
+        weight_text = 'Current Weight\n{}'.format(str(self.values.database['current_weight']))
         weight_lbl = tk.Label(self.root, text=weight_text)
         self.widgets.append(weight_lbl)
         weight_lbl.grid(row=1, column=0, columnspan=2)
@@ -21,7 +21,7 @@ class Weight():
         weight_entry = tk.Entry(self.root, width=7, textvariable=weight_var)
         self.widgets.append(weight_entry)
         weight_entry.grid(row=2, column=0, columnspan=2)
-        weight_var.set(self.values.weight_num)
+        weight_var.set(self.values.database['current_weight'])
         
         weight_entry.bind('<Return>', lambda x: self.set_value(
             weight_var, weight_lbl, 'weight'))
@@ -32,7 +32,7 @@ class Weight():
         
         
         #starting weight
-        start_text = 'Starting Weight\n{}'.format(str(self.values.start_weight))
+        start_text = 'Starting Weight\n{}'.format(str(self.values.database['start_weight']))
         start_lbl = tk.Label(self.root, text=start_text)
         self.widgets.append(start_lbl)
         start_lbl.grid(row=1, column=2, columnspan=2)
@@ -41,7 +41,7 @@ class Weight():
         start_entry = tk.Entry(self.root, width=7, textvariable=start_var)
         self.widgets.append(start_entry)
         start_entry.grid(row=2, column=2, columnspan=2)
-        start_var.set(self.values.start_weight)
+        start_var.set(self.values.database['start_weight'])
         
         start_entry.bind('<Return>', lambda x: self.set_value(
             start_var, start_lbl, 'start'))
@@ -52,7 +52,7 @@ class Weight():
         
         
         #goal weight
-        goal_text = 'Goal Weight\n{}'.format(str(self.values.goal_weight))
+        goal_text = 'Goal Weight\n{}'.format(str(self.values.database['goal_weight']))
         goal_lbl = tk.Label(self.root, text=goal_text)
         self.widgets.append(goal_lbl)
         goal_lbl.grid(row=1, column=4, columnspan=2)
@@ -61,7 +61,7 @@ class Weight():
         goal_entry = tk.Entry(self.root, width=7, textvariable=goal_var)
         self.widgets.append(goal_entry)
         goal_entry.grid(row=2, column=4, columnspan=2)
-        goal_var.set(self.values.goal_weight)
+        goal_var.set(self.values.database['goal_weight'])
         
         goal_entry.bind('<Return>', lambda x: self.set_value(
             goal_var, goal_lbl, 'goal'))
@@ -72,7 +72,7 @@ class Weight():
         
         
         #cal goal
-        cal_text = 'Calorie Goal\n{}'.format(str(self.values.cal_budget_num))
+        cal_text = 'Calorie Goal\n{}'.format(str(self.values.database['cal_budget']))
         cal_lbl = tk.Label(self.root, text=cal_text)
         self.widgets.append(cal_lbl)
         cal_lbl.grid(row=1, column=6, columnspan=2)
@@ -81,12 +81,12 @@ class Weight():
         cal_entry = tk.Entry(self.root, width=7, textvariable=cal_var)
         self.widgets.append(cal_entry)
         cal_entry.grid(row=2, column=6, columnspan=2)
-        cal_var.set(self.values.cal_budget_num)
+        cal_var.set(self.values.database['cal_budget'])
         
         cal_entry.bind('<Return>', lambda x: self.set_value(
-            cal_var, cal_lbl, 'cal', cal_var))
+            cal_var, cal_lbl, 'cal'))
         cal_btn = tk.Button(self.root, text='Save', command=lambda:self.set_value(
-            cal_var, cal_lbl, 'cal', cal_var))
+            cal_var, cal_lbl, 'cal'))
         self.widgets.append(cal_btn)
         cal_btn.grid(row=3, column=6, columnspan=2, pady=10)
         
@@ -108,31 +108,31 @@ class Weight():
         tk.Label(labelframe, font=font, text='Calories to Eat').grid(row=13, column=0, columnspan=2, sticky='e')
         
         
-        tk.Label(labelframe, text=self.values.goal_date).grid(row=5, column=2, columnspan=2) #goal
-        tk.Label(labelframe, text=self.values.current_date).grid(row=5, column=4, columnspan=2) #current
-        tk.Label(labelframe, text=self.values.goal_timespan).grid(row=6, column=2, columnspan=2) #goal
-        tk.Label(labelframe, text=self.values.current_timespan).grid(row=6, column=4, columnspan=2) #current
-        tk.Label(labelframe, text=self.values.goal_weight).grid(row=7, column=2, columnspan=2) #goal
-        tk.Label(labelframe, text=self.values.weight_num).grid(row=7, column=4, columnspan=2) #current
-        tk.Label(labelframe, text=self.values.goal_pound2lose).grid(row=8, column=2, columnspan=2) #goal
-        tk.Label(labelframe, text=self.values.current_pound2lose).grid(row=8, column=4, columnspan=2) #current
-        tk.Label(labelframe, text=self.values.goal_daypounds).grid(row=9, column=2, columnspan=2) #goal
-        tk.Label(labelframe, text=self.values.current_daypounds).grid(row=9, column=4, columnspan=2) #current
-        tk.Label(labelframe, text=self.values.goal_weekpounds).grid(row=10, column=2, columnspan=2) #goal
-        tk.Label(labelframe, text=self.values.current_weekpounds).grid(row=10, column=4, columnspan=2) #current
-        tk.Label(labelframe, text=self.values.goal_cal_burn).grid(row=11, column=2, columnspan=2) #goal
-        tk.Label(labelframe, text=self.values.current_cal_burn).grid(row=11, column=4, columnspan=2) #current
-        tk.Label(labelframe, text=self.values.goal_cal2elim).grid(row=12, column=2, columnspan=2) #goal
-        tk.Label(labelframe, text=self.values.current_cal2elim).grid(row=12, column=4, columnspan=2) #current
-        tk.Label(labelframe, text=self.values.goal_cal2eat).grid(row=13, column=2, columnspan=2) #goal
-        tk.Label(labelframe, text=self.values.current_cal2eat).grid(row=13, column=4, columnspan=2) #current
+        tk.Label(labelframe, text=self.values.database['goal_date']).grid(row=5, column=2, columnspan=2) #goal
+        tk.Label(labelframe, text=self.values.format_current_date()).grid(row=5, column=4, columnspan=2) #current
+        tk.Label(labelframe, text=self.values.database['goal_timespan']).grid(row=6, column=2, columnspan=2) #goal
+        tk.Label(labelframe, text=self.values.database['current_timespan']).grid(row=6, column=4, columnspan=2) #current
+        tk.Label(labelframe, text=self.values.database['goal_weight']).grid(row=7, column=2, columnspan=2) #goal
+        tk.Label(labelframe, text=self.values.database['current_weight']).grid(row=7, column=4, columnspan=2) #current
+        tk.Label(labelframe, text=self.values.database['goal_pounds2lose']).grid(row=8, column=2, columnspan=2) #goal
+        tk.Label(labelframe, text=self.values.database['current_pounds2lose']).grid(row=8, column=4, columnspan=2) #current
+        tk.Label(labelframe, text=self.values.database['goal_daypounds']).grid(row=9, column=2, columnspan=2) #goal
+        tk.Label(labelframe, text=self.values.database['current_daypounds']).grid(row=9, column=4, columnspan=2) #current
+        tk.Label(labelframe, text=self.values.database['goal_weekpounds']).grid(row=10, column=2, columnspan=2) #goal
+        tk.Label(labelframe, text=self.values.database['current_weekpounds']).grid(row=10, column=4, columnspan=2) #current
+        tk.Label(labelframe, text=self.values.database['goal_cal_burn']).grid(row=11, column=2, columnspan=2) #goal
+        tk.Label(labelframe, text=self.values.database['current_cal_burn']).grid(row=11, column=4, columnspan=2) #current
+        tk.Label(labelframe, text=self.values.database['goal_cal2elim']).grid(row=12, column=2, columnspan=2) #goal
+        tk.Label(labelframe, text=self.values.database['current_cal2elim']).grid(row=12, column=4, columnspan=2) #current
+        tk.Label(labelframe, text=self.values.database['goal_cal2eat']).grid(row=13, column=2, columnspan=2) #goal
+        tk.Label(labelframe, text=self.values.database['current_cal2eat']).grid(row=13, column=4, columnspan=2) #current
         
         self.widgets.append(lbl)
         lbl.grid(row=4, column=0, columnspan=6)
   
         
         
-    def set_value(self, strvar, widget, select=None, var=None):
+    def set_value(self, strvar, widget, select=None):
         num = False
         if not strvar.get():
             msgbox.showwarning('Warning', 'Entry field cannot be empty!')
@@ -150,21 +150,22 @@ class Weight():
             if select == 'weight':
                 weight_text = 'Current Weight\n{}'.format(str(num))
                 widget.config(text=weight_text)
-                self.values.weight_num = num
+                self.values.database['current_weight'] = num
             elif select == 'start':
                 start_weight = 'Starting Weight\n{}'.format(str(num))
                 widget.config(text=start_weight)
-                self.values.start_weight = num
+                self.values.database['start_weight'] = num
             elif select == 'goal':
                 goal_weight = 'Goal Weight\n{}'.format(str(num))
                 widget.config(text=goal_weight)
-                self.values.goal_weight = num
+                self.values.database['goal_weight'] = num
             elif select == 'cal':
                 msg = 'Editing this value will override your calories goal selected by your settings\nIs this OK'
                 if msgbox.askokcancel('Warning', msg):
                     cal = 'Calorie Goal\n{}'.format(str(num))
                     widget.config(text=cal)
-                    self.values.cal_budget_num = num
+                    self.values.database['cal_budget'] = num
                 else:
-                    var.set(self.values.cal_budget_num)
+                    var.set(self.values.database['cal_budget'])
+            Weight(self.root, self.widgets, self.values) #make recursion to reset progress values in weight tab
         

@@ -1,7 +1,9 @@
 
+import time
+
 class Storage:
     def __init__(self):
-        
+        '''
         #weight
         self.food_num = 0
         self.activity_num = 0
@@ -28,3 +30,36 @@ class Storage:
         self.current_cal2elim = 0
         self.goal_cal2eat = 0
         self.current_cal2eat = 0
+        '''
+        self.database = {
+            'food_cal': 0,
+            'activity_cal': 0,
+            'current_weight': 0,
+            'mood': 0,
+            'cal_budget': 2000,
+            'cal_net': 0,
+            'start_weight': 0,
+            'goal_weight': 0,
+            
+            'goal_date': 0,
+            'current_date': 0,
+            'goal_timespan': 0,
+            'current_timespan': 0,
+            'goal_pounds2lose': 0,
+            'current_pounds2lose': 0,
+            'goal_daypounds': 0,
+            'current_daypounds': 0,
+            'goal_weekpounds': 0,
+            'current_weekpounds': 0,
+            'goal_cal_burn': 0,
+            'current_cal_burn': 0,
+            'goal_cal2elim': 0,
+            'current_cal2elim': 0,
+            'goal_cal2eat': 0,
+            'current_cal2eat': 0,
+        }
+        
+    def format_current_date(self):
+        self.database['current_date'] = time.time()
+        return time.strftime('%B %d %Y', time.localtime(self.database['current_date']))
+        
