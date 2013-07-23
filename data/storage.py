@@ -41,7 +41,7 @@ class Storage:
             'start_weight': 0,
             'goal_weight': 0,
             
-            'goal_date': 0,
+            'goal_date': 'test',
             'current_date': 0,
             'goal_timespan': 0,
             'current_timespan': 0,
@@ -57,9 +57,31 @@ class Storage:
             'current_cal2elim': 0,
             'goal_cal2eat': 0,
             'current_cal2eat': 0,
+            
+            
+            'day_selected':0,
+            'month_selected':0,
+            'month_name':0,
+            'year_selected':0,
+            'day_name':0
         }
         
     def format_current_date(self):
         self.database['current_date'] = time.time()
         return time.strftime('%B %d %Y', time.localtime(self.database['current_date']))
+    
+    def format_pounds2lose(self, current=None):
+        if not current:
+            start = self.database['start_weight']
+        else:
+            start = self.database['current_weight']
+        end = self.database['goal_weight']
+        if start > end:
+            if start and end:
+                return start - end
+            else:
+                return 0
+        else:
+            return 0
+
         

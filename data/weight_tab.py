@@ -4,12 +4,19 @@ try:
 except ImportError:
     import Tkinter as tk
     import tkMessageBox as msgbox
+    
+from . import calendar_
 
 class Weight():
     def __init__(self, parent, widgets, values):
         self.root = parent
         self.widgets = widgets
         self.values = values
+        
+        self.v = tk.StringVar()
+
+        self.v.set('{} {} {}'.format(
+            self.values.database['month_name'], self.values.database['day_selected'], self.values.database['year_selected']))
         
         #weight
         weight_text = 'Current Weight\n{}'.format(str(self.values.database['current_weight']))
@@ -107,15 +114,16 @@ class Weight():
         tk.Label(labelframe, font=font, text='Calories to Eliminate').grid(row=12, column=0, columnspan=2, sticky='e')
         tk.Label(labelframe, font=font, text='Calories to Eat').grid(row=13, column=0, columnspan=2, sticky='e')
         
+        tk.Button(labelframe, text='Set', command=lambda:self.win()).grid(row=5, column=3, columnspan=2)
         
-        tk.Label(labelframe, text=self.values.database['goal_date']).grid(row=5, column=2, columnspan=2) #goal
+        tk.Label(labelframe, text=self.v.get()).grid(row=5, column=2, columnspan=2) #goal
         tk.Label(labelframe, text=self.values.format_current_date()).grid(row=5, column=4, columnspan=2) #current
         tk.Label(labelframe, text=self.values.database['goal_timespan']).grid(row=6, column=2, columnspan=2) #goal
         tk.Label(labelframe, text=self.values.database['current_timespan']).grid(row=6, column=4, columnspan=2) #current
         tk.Label(labelframe, text=self.values.database['goal_weight']).grid(row=7, column=2, columnspan=2) #goal
         tk.Label(labelframe, text=self.values.database['current_weight']).grid(row=7, column=4, columnspan=2) #current
-        tk.Label(labelframe, text=self.values.database['goal_pounds2lose']).grid(row=8, column=2, columnspan=2) #goal
-        tk.Label(labelframe, text=self.values.database['current_pounds2lose']).grid(row=8, column=4, columnspan=2) #current
+        tk.Label(labelframe, text=self.values.format_pounds2lose()).grid(row=8, column=2, columnspan=2) #goal
+        tk.Label(labelframe, text=self.values.format_pounds2lose('goal')).grid(row=8, column=4, columnspan=2) #current
         tk.Label(labelframe, text=self.values.database['goal_daypounds']).grid(row=9, column=2, columnspan=2) #goal
         tk.Label(labelframe, text=self.values.database['current_daypounds']).grid(row=9, column=4, columnspan=2) #current
         tk.Label(labelframe, text=self.values.database['goal_weekpounds']).grid(row=10, column=2, columnspan=2) #goal
@@ -129,8 +137,21 @@ class Weight():
         
         self.widgets.append(lbl)
         lbl.grid(row=4, column=0, columnspan=6)
-  
         
+    def upon_destroy(self, parent):
+        parent.destroy
+  
+    def win(self):
+        win = tk.Toplevel(self.root)
+        win.title('Goal Date')
+        cal = calendar_.Calendar(win, self.values)
+        ok = tk.Button(win, width=5, text='OK', command=win.destroy)
+        ok.grid(row=9, column=2, columnspan=3, pady=10)
+        self.root.protocol('WM_DELETE_WINDOW', win.quit)
+        win.focus_set() #take over input focus
+        win.grab_set() #disable other windows while im open
+        win.wait_window() #and wait here until win destroyed
+        Weight(self.root, self.widgets, self.values)
         
     def set_value(self, strvar, widget, select=None):
         num = False
